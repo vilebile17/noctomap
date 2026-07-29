@@ -5,15 +5,10 @@ import (
 	"log"
 	"os"
 	"os/exec"
+	"strings"
 
 	tea "charm.land/bubbletea/v2"
 )
-
-type Theme struct {
-	wallpaperPath      string
-	colourSchemeSource string
-	colourSchemeName   string
-}
 
 type model struct {
 	themes []Theme
@@ -21,19 +16,13 @@ type model struct {
 }
 
 func initialModel() model {
+	t, err := getConfiguration()
+	if err != nil {
+		log.Fatal(err)
+	}
+
 	return model{
-		themes: []Theme{
-			{
-				wallpaperPath:      "~/Pictures/Wallpapers/Arch Linux.jpg",
-				colourSchemeSource: "builtin",
-				colourSchemeName:   "Catppuccin",
-			},
-			{
-				wallpaperPath:      "~/Pictures/Wallpapers/Dramatic Thunder.png",
-				colourSchemeSource: "builtin",
-				colourSchemeName:   "Nord",
-			},
-		},
+		themes: t,
 	}
 }
 
@@ -61,8 +50,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				"noctalia",
 				"msg",
 				"color-scheme-set",
-				m.themes[m.cursor].colourSchemeSource,
-				m.themes[m.cursor].colourSchemeName,
+				m.themes[m.cursor].ColourSchemeSource,
+				m.themes[m.cursor].ColourSchemeName,
 			)
 			err := themeCmd.Run()
 			if err != nil {
@@ -73,7 +62,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 				"noctalia",
 				"msg",
 				"wallpaper-set",
-				m.themes[m.cursor].wallpaperPath,
+				m.themes[m.cursor].WallpaperPath,
 			)
 			err = wallpaperCmd.Run()
 			if err != nil {
@@ -85,7 +74,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m model) View() tea.View {
-	s := "What should we buy at the market?\n\n"
+	s := "What wallpaper are you craving?\n\n"
 
 	for i, theme := range m.themes {
 		cursor := " " // no cursor
@@ -93,7 +82,8 @@ func (m model) View() tea.View {
 			cursor = ">" // cursor!
 		}
 
-		s += fmt.Sprintf("%s %s\n", cursor, theme.wallpaperPath)
+		directories := strings.Split(theme.WallpaperPath, "/")
+		s += fmt.Sprintf("%s %s\n", cursor, directories[len(directories)-1])
 	}
 
 	s += "\nPress q to quit.\n"

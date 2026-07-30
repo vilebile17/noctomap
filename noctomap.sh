@@ -1,0 +1,1 @@
+kitty bash -c "hyprctl dispatch 'hl.dsp.window.float({ action = "toggle" })'; hyprctl dispatch 'hl.dsp.window.center()'; hyprctl dispatch 'hl.dsp.window.resize({ x = 600, y = 420 })'; clear; noctomap"

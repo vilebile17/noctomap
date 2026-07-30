@@ -3,17 +3,20 @@
     {
       "wallpaper_path": "~/Pictures/Wallpapers/donut.png",
       "colour_scheme_source": "builtin",
-      "colour_scheme_name": "Catppuccin"
+      "colour_scheme_name": "Catppuccin",
+      "theme_mode": "dark"
     },
     {
       "wallpaper_path": "~/Pictures/Wallpapers/Arch Linux.jpg",
       "colour_scheme_source": "community",
-      "colour_scheme_name": "Catppuccin Mocha Sapphire"
+      "colour_scheme_name": "Catppuccin Mocha Sapphire",
+      "theme_mode": "dark"
     },
     {
       "wallpaper_path": "~/Pictures/Wallpapers/sunset.jpeg",
       "colour_scheme_source": "wallpaper",
-      "colour_scheme_name": "m3-rainbow"
+      "colour_scheme_name": "m3-rainbow",
+      "theme_mode": "light"
     }
   ]
 }

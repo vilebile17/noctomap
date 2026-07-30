@@ -9,6 +9,7 @@ type Theme struct {
 	WallpaperPath      string `json:"wallpaper_path"`
 	ColourSchemeSource string `json:"colour_scheme_source"`
 	ColourSchemeName   string `json:"colour_scheme_name"`
+	ThemeMode          string `json:"theme_mode"`
 }
 
 func getConfiguration() ([]Theme, error) {

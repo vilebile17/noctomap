@@ -75,6 +75,22 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 					m.themes[m.cursor].WallpaperPath,
 				))
 			}
+
+			if m.themes[m.cursor].ThemeMode != "" {
+				themeModeCmd := exec.Command(
+					"noctalia",
+					"msg",
+					"theme-mode-set",
+					m.themes[m.cursor].ThemeMode,
+				)
+				err = themeModeCmd.Run()
+				if err != nil {
+					return m, tea.Println(fmt.Sprintf(
+						"Unable to set the theme mode to %v, it must be either 'light' or 'dark' (or 'auto' technically)\n",
+						m.themes[m.cursor].ThemeMode,
+					))
+				}
+			}
 		}
 	}
 	return m, nil

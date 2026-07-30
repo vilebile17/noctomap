@@ -35,7 +35,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 	switch msg := msg.(type) {
 	case tea.KeyPressMsg:
 		switch msg.String() {
-		case "ctrl+c", "q":
+		case "ctrl+c", "q", "esc":
 			return m, tea.Quit
 		case "up", "k":
 			if m.cursor > 0 {
@@ -55,9 +55,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			)
 			err := themeCmd.Run()
 			if err != nil {
-				fmt.Printf("Unable to change to theme %v -> %v, make sure you typed it out correctly\n", m.themes[m.cursor].ColourSchemeSource, m.themes[m.cursor].ColourSchemeName)
-				fmt.Println("(Watch out for capitals!!)")
-				log.Fatal(err)
+				return m, tea.Println(fmt.Sprintf(
+					"Unable to change to theme %v -> %v, make sure you typed it out correctly\n(watch out for capitals!!)\n",
+					m.themes[m.cursor].ColourSchemeSource,
+					m.themes[m.cursor].ColourSchemeName,
+				))
 			}
 
 			wallpaperCmd := exec.Command(
@@ -68,8 +70,10 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			)
 			err = wallpaperCmd.Run()
 			if err != nil {
-				fmt.Printf("Unable to change to wallpaper %v, make sure you typed out the path correctly\n", m.themes[m.cursor].WallpaperPath)
-				log.Fatal(err)
+				return m, tea.Println(fmt.Sprintf(
+					"Unable to change wallpaper to '%v' be sure that you spelled it out correctly\n",
+					m.themes[m.cursor].WallpaperPath,
+				))
 			}
 		}
 	}

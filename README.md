@@ -12,10 +12,10 @@ It maps a wallpaper with a theme and allows users to switch both **simultaneousl
 
 While Noctalia does have support for themes generated from a wallpaper, I found that
 those generated themes are never quite as good as _hand-crafted_ ones. Noctalia doesn't
-have a feature to map wallpapers with themes and switch theme together so I decided
+have a feature to make wallpaper-theme combos and switch theme together so I decided
 to implement it myself.
 
-## Quickstart
+## Quickstart 
 
 First ensure that you have [Golang](https://go.dev) installed
 
@@ -38,9 +38,9 @@ Each object will be of this format:
 
 ```js
 {
-  "wallpaper_path": "~/Pictures/Wallpapers/pic.jpg", // quite obvious, the path to your wallpaper. It doesn't have to be ~/Pictures/Wallpapers/___ btw
-  "colour_scheme_source": "builtin", // the source of the colour scheme. It is either 'builtin' 'community' 'wallpaper' or 'custom'
-  "colour_scheme_name": "Catppuccin" // the actual name of the colour scheme. Be careful about capitalisation!
+  "wallpaper_path": "~/Pictures/Wallpapers/pic.jpg", // The path to your wallpaper. It doesn't have to be ~/Pictures/Wallpapers/___ btw
+  "colour_scheme_source": "builtin", // The source of the colour scheme. It is either 'builtin' 'community' 'wallpaper' or 'custom'
+  "colour_scheme_name": "Catppuccin" // The actual name of the colour scheme. Be careful about spelling and capitalisation!
 }
 ```
 
@@ -48,5 +48,5 @@ _Note that I have provided some examples in `.noctomap.example.json` if you'd li
 
 ## Contributing
 
-If you would like to contribute anything to this project please **fork** the repo, make you changes
+If you would like to contribute anything to this project please **fork** the repo, make your changes
 and then open a **pull request** to the main branch.

@@ -1,4 +1,4 @@
-module github.com/vilebile17/noctalia-theme-switcher
+module github.com/vilebile17/noctomap
 
 go 1.26.5
 

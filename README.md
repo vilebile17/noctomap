@@ -44,7 +44,13 @@ Each object will be of this format:
 }
 ```
 
-_Note that I have provided some examples in `.noctomap.example.json` if you'd like a reference_
+> [!NOTE]
+> There is a small inconsistency in Noctalia's naming system. If want to _generate a theme
+> based upon a wallpaper_ by setting `colour_scheme_source` to `wallpaper`, then the `colour_scheme_name`
+> won't be exactly as you see it in your settings. Instead everything is lower-case and replace all
+> spaces with a dash '-' E.g. `M3 Tonal Spot` becomes `m3-tonal-spot`
+
+_I have provided some examples in `.noctomap.example.json` if you'd like a reference_
 
 ## Contributing
 

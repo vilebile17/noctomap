@@ -55,6 +55,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			)
 			err := themeCmd.Run()
 			if err != nil {
+				fmt.Printf("Unable to change to theme %v -> %v, make sure you typed it out correctly\n", m.themes[m.cursor].ColourSchemeSource, m.themes[m.cursor].ColourSchemeName)
+				fmt.Println("(Watch out for capitals!!)")
 				log.Fatal(err)
 			}
 
@@ -66,6 +68,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			)
 			err = wallpaperCmd.Run()
 			if err != nil {
+				fmt.Printf("Unable to change to wallpaper %v, make sure you typed out the path correctly\n", m.themes[m.cursor].WallpaperPath)
 				log.Fatal(err)
 			}
 		}
@@ -74,7 +77,7 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 }
 
 func (m model) View() tea.View {
-	s := "What wallpaper are you craving?\n\n"
+	s := "Which wallpaper are you craving?\n\n"
 
 	for i, theme := range m.themes {
 		cursor := " " // no cursor
@@ -83,10 +86,14 @@ func (m model) View() tea.View {
 		}
 
 		directories := strings.Split(theme.WallpaperPath, "/")
-		s += fmt.Sprintf("%s %s\n", cursor, directories[len(directories)-1])
+		s += fmt.Sprintf("%s \033[1m%s\033[0m - %s\n",
+			cursor,
+			directories[len(directories)-1],
+			theme.ColourSchemeName,
+		)
 	}
 
-	s += "\nPress q to quit.\n"
+	s += "\nArrow keys to move around, enter to select and q to quit\n"
 
 	return tea.NewView(s)
 }

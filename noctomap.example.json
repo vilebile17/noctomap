@@ -1,0 +1,19 @@
+{
+  "themes": [
+    {
+      "wallpaper_path": "~/Pictures/Wallpapers/donut.png",
+      "colour_scheme_source": "builtin",
+      "colour_scheme_name": "Catppuccin"
+    },
+    {
+      "wallpaper_path": "~/Pictures/Wallpapers/Arch Linux.jpg",
+      "colour_scheme_source": "community",
+      "colour_scheme_name": "Catppuccin Mocha Sapphire"
+    },
+    {
+      "wallpaper_path": "~/Pictures/Wallpapers/sunset.jpeg",
+      "colour_scheme_source": "wallpaper",
+      "colour_scheme_name": "M3 Rainbow"
+    }
+  ]
+}
